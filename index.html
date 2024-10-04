@@ -5,56 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joel Clinic</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Joel Clinic Logo"> <!-- Replace with your logo image -->
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <section id="hero">
-            <h1>Welcome to Joel Clinic</h1>
-            <p>Your health is our priority. We provide quality care for all your medical needs.</p>
-            <a href="#contact" class="cta-button">Book an Appointment</a>
-        </section>
-
-        <section id="about">
-            <h2>About Us</h2>
-            <p>At Joel Clinic, we believe in providing personalized care to every patient. Our team of experienced professionals is dedicated to your health and well-being.</p>
-        </section>
-
-        <section id="services">
-            <h2>Our Services</h2>
-            <ul>
-                <li>General Health Check-ups</li>
-                <li>Pediatrics</li>
-                <li>Dental Care</li>
-                <li>Vaccinations</li>
-                <li>Emergency Services</li>
-            </ul>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any questions or would like to book an appointment, please reach out!</p>
-            <p>Email: info@joelclinic.com</p>
-            <p>Phone: +123 456 7890</p>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Joel Clinic. All rights reserved.</p>
-    </footer>
-
     <style>
         /* Basic styles for the homepage */
         body {
@@ -104,6 +54,179 @@
             background: #4CAF50;
             color: white;
         }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Joel Clinic Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" id="loginBtn">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <h1>Welcome to Joel Clinic</h1>
+            <p>Your health is our priority. We provide quality care for all your medical needs.</p>
+            <a href="#contact" class="cta-button">Book an Appointment</a>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>At Joel Clinic, we believe in providing personalized care to every patient. Our team of experienced professionals is dedicated to your health and well-being.</p>
+        </section>
+
+        <section id="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li>General Health Check-ups</li>
+                <li>Pediatrics</li>
+                <li>Dental Care</li>
+                <li>Vaccinations</li>
+                <li>Emergency Services</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or would like to book an appointment, please reach out!</p>
+            <p>Email: info@joelclinic.com</p>
+            <p>Phone: +123 456 7890</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Joel Clinic. All rights reserved.</p>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="registerLink">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeRegisterModal">&times;</span>
+            <h2>Register</h2>
+            <form id="registerForm">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <p>Already have an account? <a href="#" id="loginLink">Login</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Modal handling
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModal = document.getElementById('closeModal');
+        const registerLink = document.getElementById('registerLink');
+        const registerModal = document.getElementById('registerModal');
+        const closeRegisterModal = document.getElementById('closeRegisterModal');
+        const loginLink = document.getElementById('loginLink');
+
+        // Open login modal
+        loginBtn.onclick = function() {
+            loginModal.style.display = "block";
+        }
+
+        // Close login modal
+        closeModal.onclick = function() {
+            loginModal.style.display = "none";
+        }
+
+        // Open registration modal from login
+        registerLink.onclick = function() {
+            loginModal.style.display = "none";
+            registerModal.style.display = "block";
+        }
+
+        // Close registration modal
+        closeRegisterModal.onclick = function() {
+            registerModal.style.display = "none";
+        }
+
+        // Open login modal from registration
+        loginLink.onclick = function() {
+            registerModal.style.display = "none";
+            loginModal.style.display = "block";
+        }
+
+        // Close modal on window click
+        window.onclick = function(event) {
+            if (event.target == loginModal || event.target == registerModal) {
+                loginModal.style.display = "none";
+                registerModal.style.display = "none";
+            }
+        }
+
+        // Handle login and registration (simulated for this example)
+        document.getElementById('loginForm').onsubmit = function(e) {
+            e.preventDefault();
+            // Simulated login logic
+            alert('Logged in successfully!');
+            loginModal.style.display = "none";
+        };
+
+        document.getElementById('registerForm').onsubmit = function(e) {
+            e.preventDefault();
+            // Simulated registration logic
+            alert('Registered successfully!');
+            registerModal.style.display = "none";
+        };
+    </script>
 </body>
 </html>
